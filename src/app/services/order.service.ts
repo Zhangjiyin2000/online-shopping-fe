@@ -36,12 +36,4 @@ export class OrderService {
     return this.http.get<Order[]>(`${this.baseUrl}/orders/${orderId}/cancel`);
   }
 
-  getMostFrequentlyPurchasedProducts(limit: number) {
-    return this.http.get<Order[]>(`${this.baseUrl}/products/frequent/${limit}`);
-  }
-
-  getMostRecentlyPurchasedProducts(limit: number) {
-    return this.http.get<Order[]>(`${this.baseUrl}/products/recent/${limit}`);
-  }
-
 }

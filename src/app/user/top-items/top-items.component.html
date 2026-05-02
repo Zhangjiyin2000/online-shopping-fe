@@ -1,1 +1,25 @@
-<p>top-items works!</p>
+<section class="top-items">
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <mat-card>
+    <mat-card-title>Top 3 Frequently Purchased Items</mat-card-title>
+    <mat-card-content>
+      <ol>
+        <li *ngFor="let product of frequentProducts">
+          {{ product.name }} ({{ product.totalQuantity }} purchased)
+        </li>
+      </ol>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Top 3 Recently Purchased Items</mat-card-title>
+    <mat-card-content>
+      <ol>
+        <li *ngFor="let product of recentProducts">
+          {{ product.name }} ({{ product.totalQuantity }} purchased)
+        </li>
+      </ol>
+    </mat-card-content>
+  </mat-card>
+</section>
