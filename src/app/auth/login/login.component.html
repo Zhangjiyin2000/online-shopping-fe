@@ -1,0 +1,41 @@
+<main class="auth-page">
+  <section class="login-panel">
+    <h1>Login</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <label for="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        formControlName="username"
+        autocomplete="username"
+      >
+      <p class="field-error" *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+        Username is required.
+      </p>
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        autocomplete="current-password"
+      >
+      <p class="field-error" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+        Password is required.
+      </p>
+
+      <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="form-success" *ngIf="successMessage">{{ successMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <p class="register-link">
+      Don't have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+  </section>
+</main>
