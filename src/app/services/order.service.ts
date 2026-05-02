@@ -20,13 +20,28 @@ export interface Order {
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:8081/orders';
+  private baseUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient) { }
 
   getAllOrders() {
-    return this.http.get<Order[]>(`${this.baseUrl}/all`);
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/all`);
   }
 
+  getOrderDetail(orderId: number) {
+    return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}`);
+  }
+
+  cancelOrder(orderId: number) {
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/${orderId}/cancel`);
+  }
+
+  getMostFrequentlyPurchasedProducts(limit: number) {
+    return this.http.get<Order[]>(`${this.baseUrl}/products/frequent/${limit}`);
+  }
+
+  getMostRecentlyPurchasedProducts(limit: number) {
+    return this.http.get<Order[]>(`${this.baseUrl}/products/recent/${limit}`);
+  }
 
 }

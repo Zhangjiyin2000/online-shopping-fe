@@ -1,1 +1,35 @@
-<p>order-detail works!</p>
+<main class="order-detail-page">
+  <a mat-button routerLink="/home">Back to Orders</a>
+
+  <p *ngIf="isLoading">Loading order detail...</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <section *ngIf="!isLoading && order">
+    <h1>Order #{{ order.orderId }}</h1>
+
+    <p><strong>Date Placed:</strong> {{ order.datePlaced | date: 'medium' }}</p>
+    <p><strong>Status:</strong> {{ order.orderStatus }}</p>
+    <p><strong>Total:</strong> {{ getOrderTotal(order) | currency }}</p>
+
+    <h2>Items</h2>
+
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.purchasedPrice | currency }}</td>
+          <td>{{ item.quantity * item.purchasedPrice | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
