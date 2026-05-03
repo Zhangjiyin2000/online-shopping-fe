@@ -1,16 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-export interface PurchasedProductSummary {
-  productId: number;
-  name: string;
-  totalQuantity: number;
-}
+import { PurchasedProductSummary } from '../models/stats.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class UserStatsService {
   private baseUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient) { }

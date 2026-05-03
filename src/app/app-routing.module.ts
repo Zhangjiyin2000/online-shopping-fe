@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './user/home/home.component';
-import { OrderDetailComponent } from './user/order-detail/order-detail.component';
+import { OrderDetailComponent } from './user/orders/order-detail/order-detail.component';
+import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
+import { ProductListComponent } from './user/products/product-list/product-list.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,15 @@ const routes: Routes = [
     path: 'orders/:id', 
     component: OrderDetailComponent 
   },
+  {
+    path: 'products/all',
+    component: ProductListComponent
+  },
+  {
+    path: 'products/:id',
+    component: ProductDetailComponent
+  },
+  
   {
     path: '', 
     redirectTo: '/login', 

@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Order, OrderService } from 'src/app/services/order.service';
+import { UserOrderService } from 'src/app/services/user-order.service';
+import { Order } from 'src/app/models/order.model';
 
 @Component({
   selector: 'app-order-detail',
@@ -15,7 +16,7 @@ export class OrderDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private userOrderService: UserOrderService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class OrderDetailComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.orderService.getOrderDetail(orderId).subscribe({
+    this.userOrderService.getOrderDetail(orderId).subscribe({
       next: (order) => {
         this.order = order;
         this.isLoading = false;
@@ -50,5 +51,20 @@ export class OrderDetailComponent implements OnInit {
     return order.items.reduce((total, item) => {
       return total + item.quantity * item.purchasedPrice;
     }, 0);
+  }
+
+  cancelOrder(): void {
+    if (!this.order) {
+      return;
+    }
+
+    this.userOrderService.cancelOrder(this.order.orderId).subscribe({
+      next: (updatedOrder) => {
+        this.order = updatedOrder;
+      },
+      error: () => {
+        this.errorMessage = 'Failed to cancel order.'
+      }
+    });
   }
 }

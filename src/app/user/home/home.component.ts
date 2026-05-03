@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Order, OrderService } from 'src/app/services/order.service';
+import { UserOrderService } from 'src/app/services/user-order.service';
+import { Order } from 'src/app/models/order.model';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent {
   isLoading = false;
   errorMessage = '';
 
-  constructor(private orderService: OrderService) {}
+  constructor(private userOrderService: UserOrderService) {}
 
   ngOnInit(): void {
     this.loadOrders();
@@ -31,7 +32,7 @@ export class HomeComponent {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.orderService.getAllOrders().subscribe({
+    this.userOrderService.getAllOrders().subscribe({
       next: (orders) => {
         this.orders = orders;
         this.isLoading = false;

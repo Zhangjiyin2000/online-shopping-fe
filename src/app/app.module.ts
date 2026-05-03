@@ -8,14 +8,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './user/home/home.component';
-import { OrderDetailComponent } from './user/order-detail/order-detail.component';
-import { TopItemsComponent } from './user/top-items/top-items.component';
+import { OrderDetailComponent } from './user/orders/order-detail/order-detail.component';
+import { TopItemsComponent } from './user/stats/top-items/top-items.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
-
+import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
+import { ProductListComponent } from './user/products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     RegisterComponent,
     HomeComponent,
     OrderDetailComponent,
-    TopItemsComponent
+    TopItemsComponent,
+    ProductDetailComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

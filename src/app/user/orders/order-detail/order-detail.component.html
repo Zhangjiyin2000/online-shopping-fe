@@ -20,6 +20,7 @@
           <th>Quantity</th>
           <th>Price</th>
           <th>Subtotal</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -28,8 +29,21 @@
           <td>{{ item.quantity }}</td>
           <td>{{ item.purchasedPrice | currency }}</td>
           <td>{{ item.quantity * item.purchasedPrice | currency }}</td>
+          <td>
+            <a mat-button [routerLink]="['/products', item.productId]">
+              View Product
+            </a>
+          </td>
         </tr>
       </tbody>
+      <button 
+        mat-button 
+        color="warn" 
+        (click)="cancelOrder()"
+        [disabled]="order.orderStatus === 'Canceled'"
+      >
+        Cancel
+      </button>
     </table>
   </section>
 </main>

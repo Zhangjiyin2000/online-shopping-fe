@@ -1,25 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-export interface OrderItem {
-  itemId: number;
-  productId: number;
-  productName: string;
-  quantity: number;
-  purchasedPrice: number;
-}
-
-export interface Order {
-  orderId: number;
-  datePlaced: string;
-  orderStatus: string;
-  items: OrderItem[];
-}
+import { Observable } from 'rxjs';
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class UserOrderService {
   private baseUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient) { }
@@ -32,8 +19,8 @@ export class OrderService {
     return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}`);
   }
 
-  cancelOrder(orderId: number) {
-    return this.http.get<Order[]>(`${this.baseUrl}/orders/${orderId}/cancel`);
+  cancelOrder(orderId: number): Observable<Order> {
+    return this.http.patch<Order>(`${this.baseUrl}/orders/${orderId}/cancel`, {});
   }
 
 }

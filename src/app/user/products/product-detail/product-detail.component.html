@@ -1,0 +1,17 @@
+<main class="product-detail-page">
+  <a mat-button>Back to Order haven't implemented yet</a>
+
+  <p *ngIf="isLoading">Loading product detail...</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <section *ngIf="!isLoading && userProductDetail">
+    <h1>Product #{{ userProductDetail.productId }}</h1>
+
+    <p><strong>Name:</strong> {{ userProductDetail.name }}</p>
+    <p><strong>Description:</strong> {{ userProductDetail.description }}</p>
+    <p><strong>Retail Price:</strong> {{ userProductDetail.retailPrice | currency }}</p>
+
+  </section>
+</main>
+
+

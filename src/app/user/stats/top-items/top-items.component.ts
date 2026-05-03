@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ProductService, PurchasedProductSummary } from 'src/app/services/product.service';
+import { PurchasedProductSummary } from 'src/app/models/stats.model';
+import { UserProductService} from 'src/app/services/user-product.service';
+import { UserStatsService } from 'src/app/services/user-stats.service';
 
 @Component({
   selector: 'app-top-items',
@@ -12,7 +14,7 @@ export class TopItemsComponent implements OnInit {
   recentProducts: PurchasedProductSummary[] = [];
   errorMessage = '';
 
-  constructor(private productService: ProductService) {}
+  constructor(private userStatsService: UserStatsService) {}
 
   ngOnInit(): void {
     this.loadTopProducts();
@@ -21,23 +23,23 @@ export class TopItemsComponent implements OnInit {
   loadTopProducts(): void {
     this.errorMessage = '';
 
-    this.productService.getMostFrequentlyPurchasedProducts(3).subscribe({
-      next: (products) => {
-        this.frequentProducts = products;
+    this.userStatsService.getMostFrequentlyPurchasedProducts(3).subscribe({
+      next: (frequentProducts) => {
+        this.frequentProducts = frequentProducts;
       },
       error: (error: HttpErrorResponse) => {
         console.error('Failed to load frequent products', error);
-        this.errorMessage = `Failed to load top products. Status: ${error.status || 'unknown'}`;
+        this.errorMessage = `Failed to load top frequent products. Status: ${error.status || 'unknown'}`;
       }
     });
 
-    this.productService.getMostRecentlyPurchasedProducts(3).subscribe({
-      next: (products) => {
-        this.recentProducts = products;
+    this.userStatsService.getMostRecentlyPurchasedProducts(3).subscribe({
+      next: (recentProducts) => {
+        this.recentProducts = recentProducts;
       },
       error: (error: HttpErrorResponse) => {
         console.error('Failed to load recent products', error);
-        this.errorMessage = `Failed to load top products. Status: ${error.status || 'unknown'}`;
+        this.errorMessage = `Failed to load top recent products. Status: ${error.status || 'unknown'}`;
       }
     });
   }
