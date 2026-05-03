@@ -12,3 +12,13 @@ export interface Order {
   orderStatus: string;
   items: OrderItem[];
 }
+
+export interface AdminOrderItem extends OrderItem {
+    wholesalePrice: number;
+}
+
+export interface AdminOrder extends Order {
+    userId: number;
+    username: string;
+    items: AdminOrderItem[];
+}

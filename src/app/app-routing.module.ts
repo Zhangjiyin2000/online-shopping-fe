@@ -8,6 +8,7 @@ import { ProductDetailComponent } from './user/products/product-detail/product-d
 import { ProductListComponent } from './user/products/product-list/product-list.component';
 import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.component';
 import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,14 @@ const routes: Routes = [
   {
     path: 'cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'admin-home',
+    component: AdminHomeComponent
+  },
+  {
+    path: 'admin-home/:id',
+    component: AdminHomeComponent
   },
   {
     path: '', 

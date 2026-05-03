@@ -40,7 +40,8 @@ import { OrderManagementComponent } from './admin/orders/order-management/order-
     AdminStatsComponent,
     ProductManagementComponent,
     ProductFormComponent,
-    OrderManagementComponent
+    OrderManagementComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,

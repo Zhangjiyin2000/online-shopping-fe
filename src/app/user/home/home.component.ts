@@ -54,5 +54,4 @@ export class HomeComponent {
       return total + item.quantity * item.purchasedPrice;
     }, 0);
   }
-
 }
