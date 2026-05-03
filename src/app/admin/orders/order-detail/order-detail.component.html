@@ -1,1 +1,52 @@
-<p>order-detail works!</p>
+<main class="admin-order-detail-page">
+  <a mat-button routerLink="/admin-home">Back to Admin Orders</a>
+
+  <p *ngIf="isLoading">Loading order detail...</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <section *ngIf="!isLoading && order">
+    <h1>Order #{{ order.orderId }}</h1>
+
+    <p><strong>Date Placed:</strong> {{ order.datePlaced | date: 'medium' }}</p>
+    <p><strong>Status:</strong> {{ order.orderStatus }}</p>
+    <p><strong>Total:</strong> {{ getOrderTotal(order) | currency }}</p>
+    <p><strong>User Id:</strong> {{ order.userId }}</p>
+    <p><strong>Username:</strong> {{ order.username }}</p>
+    
+    <h2>Items</h2>
+
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>{{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.purchasedPrice | currency }}</td>
+          <td>{{ item.quantity * item.purchasedPrice | currency }}</td>
+          <td>
+            <a mat-button [routerLink]="['/products', item.productId]">
+              View Product
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button 
+        mat-button 
+        color="warn" 
+        (click)="cancelOrder(order)"
+        [disabled]="order.orderStatus !== 'Processing'"
+      >
+        Cancel
+      </button>
+  </section>
+</main>

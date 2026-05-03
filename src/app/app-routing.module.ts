@@ -9,6 +9,7 @@ import { ProductListComponent } from './user/products/product-list/product-list.
 import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.component';
 import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'admin-home/:id',
     component: AdminHomeComponent
+  },
+  {
+    path: 'admin/orders/:id',
+    component: AdminOrderDetailComponent
   },
   {
     path: '', 
