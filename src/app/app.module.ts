@@ -18,6 +18,11 @@ import { ProductDetailComponent } from './user/products/product-detail/product-d
 import { ProductListComponent } from './user/products/product-list/product-list.component';
 import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.component';
 import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminStatsComponent } from './admin/stats/admin-stats/admin-stats.component';
+import { ProductManagementComponent } from './admin/products/product-management/product-management.component';
+import { ProductFormComponent } from './admin/products/product-form/product-form.component';
+import { OrderManagementComponent } from './admin/orders/order-management/order-management.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.c
     ProductDetailComponent,
     ProductListComponent,
     WatchlistComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    AdminHomeComponent,
+    AdminStatsComponent,
+    ProductManagementComponent,
+    ProductFormComponent,
+    OrderManagementComponent
   ],
   imports: [
     BrowserModule,
