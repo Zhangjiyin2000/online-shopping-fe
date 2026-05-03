@@ -1,1 +1,62 @@
-<p>shopping-cart works!</p>
+<main class="shopping-cart-page">
+  <h1>Shopping Cart</h1>
+
+  <p *ngIf="isLoading">Loading shopping cart items...</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <table
+    mat-table
+    [dataSource]="cartItems"
+    class="mat-elevation-z8"
+    *ngIf="!isLoading && cartItems.length > 0"
+  >
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let cartItem">
+        {{ cartItem.name }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let cartItem">
+        {{ cartItem.quantity }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="retailPrice">
+      <th mat-header-cell *matHeaderCellDef>Retail Price</th>
+      <td mat-cell *matCellDef="let cartItem">
+        {{ cartItem.retailPrice }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="subtotal">
+      <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+      <td mat-cell *matCellDef="let cartItem">
+        {{ cartItem.quantity * cartItem.retailPrice | currency }}
+      </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let cartItem">
+        <button mat-button color="primary" (click)="removeFromCart(cartItem.productId)">
+          Remove
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <p><strong>Total: {{ getCartTotal() | currency }}</strong></p>
+
+  <p *ngIf="!isLoading && !errorMessage && cartItems.length === 0">
+    You have no shopping cart items yet.
+  </p>
+
+</main>

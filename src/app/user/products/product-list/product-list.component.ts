@@ -4,6 +4,7 @@ import { UserProductDetail } from 'src/app/models/product.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserWatchlistService } from 'src/app/services/user-watchlist.service';
 import { Router } from '@angular/router';
+import { UserCartService } from 'src/app/services/user-cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -19,6 +20,7 @@ export class ProductListComponent {
     'actions'
   ]
   isLoading = false;
+  successMessage = '';
   errorMessage = '';
   userProductDetailList: UserProductDetail[] = [];
   userWatchlistProduct: UserProductDetail | null = null;
@@ -26,7 +28,8 @@ export class ProductListComponent {
   constructor(
     private userProductService: UserProductService,
     private userWatchlistService: UserWatchlistService,
-    private router: Router
+    private router: Router,
+    private userCartService: UserCartService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +54,7 @@ export class ProductListComponent {
       this.userWatchlistService.addProductToWatchlist(productId).subscribe({
         next: () => {
           this.router.navigate(['/watchlist']);
+          this.successMessage = 'Product added to watchlist.';
           this.isLoading = false;
         },
         error: (error: HttpErrorResponse) => {
@@ -63,8 +67,8 @@ export class ProductListComponent {
 
     deleteWatchlistByProductId(productId: number): void {
       this.userWatchlistService.removeProductFromWatchlist(productId).subscribe({
-        next: (userWatchlistProduct) => {
-          this.userWatchlistProduct = userWatchlistProduct;
+        next: () => {
+          this.loadAllUserProduct();
           this.isLoading = false;
         },
         error: (error: HttpErrorResponse) => {
@@ -73,6 +77,11 @@ export class ProductListComponent {
           this.isLoading = false;
         }
       })
+    }
+
+    addToCart(product: UserProductDetail): void {
+      this.userCartService.addProductToCart(product);
+      this.successMessage = 'Product added to shopping cart.';
     }
   
 }

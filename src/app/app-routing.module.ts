@@ -7,6 +7,7 @@ import { OrderDetailComponent } from './user/orders/order-detail/order-detail.co
 import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
 import { ProductListComponent } from './user/products/product-list/product-list.component';
 import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.component';
+import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'watchlist/:id',
     component: WatchlistComponent
+  },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
   },
   {
     path: '', 

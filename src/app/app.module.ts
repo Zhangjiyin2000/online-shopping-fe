@@ -17,6 +17,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
 import { ProductListComponent } from './user/products/product-list/product-list.component';
 import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.component';
+import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.compone
     TopItemsComponent,
     ProductDetailComponent,
     ProductListComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

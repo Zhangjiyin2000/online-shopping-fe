@@ -2,6 +2,7 @@
   <h1>Watchlist</h1>
 
   <p *ngIf="isLoading">Loading orders...</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
   <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
   <table
@@ -41,7 +42,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let userWatchlist">
-        <button mat-button color="primary">
+        <button mat-button color="primary" (click)="deleteWatchlistByProductId(userWatchlist.productId)">
           Remove
         </button>
       </td>

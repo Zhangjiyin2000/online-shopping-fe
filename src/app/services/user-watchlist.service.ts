@@ -22,6 +22,6 @@ export class UserWatchlistService {
   }
 
   removeProductFromWatchlist(productId: number) {
-    return this.http.delete<UserProductDetail>(`${this.baseUrl}/watchlist/product/${productId}`);
+    return this.http.delete<void>(`${this.baseUrl}/watchlist/product/${productId}`);
   }
 }
