@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserProductService } from 'src/app/services/user-product.service';
 import { UserProductDetail } from 'src/app/models/product.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserWatchlistService } from 'src/app/services/user-watchlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -19,8 +21,13 @@ export class ProductListComponent {
   isLoading = false;
   errorMessage = '';
   userProductDetailList: UserProductDetail[] = [];
+  userWatchlistProduct: UserProductDetail | null = null;
   
-  constructor(private userProductService: UserProductService) {}
+  constructor(
+    private userProductService: UserProductService,
+    private userWatchlistService: UserWatchlistService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadAllUserProduct();
@@ -39,5 +46,33 @@ export class ProductListComponent {
       }
     });
   }
+
+  addWatchlistByProductId(productId: number): void {
+      this.userWatchlistService.addProductToWatchlist(productId).subscribe({
+        next: () => {
+          this.router.navigate(['/watchlist']);
+          this.isLoading = false;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Failed to add product to watchlist', error);
+          this.errorMessage = `Failed to add product to watchlist. Status: ${error.status || 'unknown'}`;
+          this.isLoading = false;
+        }
+      })
+    }
+
+    deleteWatchlistByProductId(productId: number): void {
+      this.userWatchlistService.removeProductFromWatchlist(productId).subscribe({
+        next: (userWatchlistProduct) => {
+          this.userWatchlistProduct = userWatchlistProduct;
+          this.isLoading = false;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Failed to remove product to watchlist', error);
+          this.errorMessage = `Failed to remove product to watchlist. Status: ${error.status || 'unknown'}`;
+          this.isLoading = false;
+        }
+      })
+    }
   
 }

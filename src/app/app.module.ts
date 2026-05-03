@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
 import { ProductListComponent } from './user/products/product-list/product-list.component';
+import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductListComponent } from './user/products/product-list/product-list.
     OrderDetailComponent,
     TopItemsComponent,
     ProductDetailComponent,
-    ProductListComponent
+    ProductListComponent,
+    WatchlistComponent
   ],
   imports: [
     BrowserModule,

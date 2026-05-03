@@ -20,32 +20,32 @@ export class ProductDetailComponent {
     ) {}
 
   ngOnInit(): void {
-      const productId = Number(this.route.snapshot.paramMap.get('id'));
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (!productId) {
+      this.errorMessage = 'Invalid product id.';
+      return;
+    }
+
+    this.loadUserProductDetail(productId);
+  }
   
-      if (!productId) {
-        this.errorMessage = 'Invalid order id.';
-        return;
+  loadUserProductDetail(productId: number): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.userProductService.getProductDetailById(productId).subscribe({
+      next: (userProductDetail) => {
+        this.userProductDetail = userProductDetail;
+        this.isLoading = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Failed to load user product detail', error);
+        this.errorMessage = `Failed to load user product detail. Status: ${error.status || 'unknown'}`;
+        this.isLoading = false;
       }
-  
-      this.loadUserProductDetail(productId);
-    }
-  
-    loadUserProductDetail(productId: number): void {
-      this.isLoading = true;
-      this.errorMessage = '';
-  
-      this.userProductService.getProductDetailById(productId).subscribe({
-        next: (userProductDetail) => {
-          this.userProductDetail = userProductDetail;
-          this.isLoading = false;
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error('Failed to load user product detail', error);
-          this.errorMessage = `Failed to load user product detail. Status: ${error.status || 'unknown'}`;
-          this.isLoading = false;
-        }
-      });
-    }
+    });
+  }
   
 
 }
