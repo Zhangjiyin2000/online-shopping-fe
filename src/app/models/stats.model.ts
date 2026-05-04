@@ -3,3 +3,9 @@ export interface PurchasedProductSummary {
   name: string;
   totalQuantity: number;
 }
+
+export interface ProductProfitSummary {
+  productId: number;
+  name: string;
+  totalProfit: number;
+}

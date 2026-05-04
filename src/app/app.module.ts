@@ -25,6 +25,7 @@ import { ProductFormComponent } from './admin/products/product-form/product-form
 import { OrderManagementComponent } from './admin/orders/order-management/order-management.component';
 import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-detail.component';
 import { AdminProductDetailComponent } from './admin/products/product-detail/product-detail.component';
+import { TotalSoldItemsComponent } from './admin/stats/total-sold-items/total-sold-items.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AdminProductDetailComponent } from './admin/products/product-detail/pro
     ProductFormComponent,
     OrderManagementComponent,
     AdminOrderDetailComponent,
-    AdminProductDetailComponent
+    AdminProductDetailComponent,
+    TotalSoldItemsComponent
   ],
   imports: [
     BrowserModule,

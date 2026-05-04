@@ -1,1 +1,28 @@
-<p>admin-stats works!</p>
+<section class="admin-stats">
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <mat-card>
+    <mat-card-title>Most profitable Items</mat-card-title>
+    <mat-card-content>
+      <ol>
+        <li *ngFor="let product of profitableProducts">
+          {{ product.name }} ({{ product.totalProfit | currency }})
+        </li>
+      </ol>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Top 3 popular/sold Items</mat-card-title>
+    <mat-card-content>
+      <ol>
+        <li *ngFor="let product of poplarProducts">
+          {{ product.name }} ({{ product.totalQuantity }} sold)
+        </li>
+      </ol>
+    </mat-card-content>
+  </mat-card>
+
+  <app-total-sold-items></app-total-sold-items>
+
+</section>
