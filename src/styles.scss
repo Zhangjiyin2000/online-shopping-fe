@@ -2,3 +2,106 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+main[class$="-page"] {
+  padding: 32px;
+  font-size: 16px;
+}
+
+main[class$="-page"] > h1 {
+  margin: 0 0 24px;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+main[class$="-page"] h1,
+main[class$="-page"] h2 {
+  margin: 24px 0 16px;
+}
+
+main[class$="-page"] h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+main[class$="-page"] table {
+  width: 100%;
+}
+
+main[class$="-page"] .items-table {
+  margin-top: 16px;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+main[class$="-page"] .items-table th,
+main[class$="-page"] .items-table td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+main[class$="-page"] .items-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+main[class$="-page"] th,
+main[class$="-page"] td {
+  padding: 14px 16px;
+  font-size: 15px;
+  text-align: center;
+}
+
+main[class$="-page"] button,
+main[class$="-page"] a[mat-button] {
+  font-size: 14px;
+}
+
+main[class$="-page"] mat-card {
+  margin-top: 20px;
+  padding: 16px;
+}
+
+main[class$="-page"] .detail-actions {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+
+.order-status {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.status-processing {
+  color: blue;
+}
+
+.status-completed {
+  color: #2e8b57;
+}
+
+.status-canceled,
+.status-cancelled {
+  color: red;
+}
+
+button.action-view,
+a.action-view,
+.mat-mdc-button.action-view {
+  --mdc-text-button-label-text-color: #3f51b5;
+  color: #3f51b5 !important;
+}
+
+button.action-complete,
+a.action-complete,
+.mat-mdc-button.action-complete {
+  --mdc-text-button-label-text-color: #2e8b57;
+  color: #2e8b57 !important;
+}
+
+button.action-cancel,
+a.action-cancel,
+.mat-mdc-button.action-cancel {
+  --mdc-text-button-label-text-color: red;
+  color: red !important;
+}

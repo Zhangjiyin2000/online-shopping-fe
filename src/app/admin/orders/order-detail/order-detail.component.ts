@@ -11,6 +11,7 @@ import { AdminOrderService } from 'src/app/services/admin-order.service';
 })
 export class AdminOrderDetailComponent {
   order: AdminOrder | null = null;
+  displayedColumns = ['productName', 'quantity', 'price', 'subtotal', 'actions'];
   isLoading = false;
   successMessage = '';
   errorMessage = '';

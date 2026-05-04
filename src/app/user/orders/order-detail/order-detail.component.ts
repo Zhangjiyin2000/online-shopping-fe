@@ -11,6 +11,7 @@ import { Order } from 'src/app/models/order.model';
 })
 export class OrderDetailComponent implements OnInit {
   order: Order | null = null;
+  displayedColumns = ['productName', 'quantity', 'price', 'subtotal', 'actions'];
   isLoading = false;
   errorMessage = '';
 
