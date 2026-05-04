@@ -1,5 +1,14 @@
 <main class="product-management-page">
-  <h1>Product List</h1>
+  <div class="page-header">
+    <h1>Product List</h1>
+    <a
+        mat-raised-button
+        color="primary"
+        routerLink="/admin/products/new"
+    >
+        Create Product
+    </a>
+    </div>
 
   <p *ngIf="isLoading">Loading orders...</p>
   <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
