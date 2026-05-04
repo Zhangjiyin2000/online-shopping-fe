@@ -10,6 +10,9 @@ import { WatchlistComponent } from './user/watchlist/watchlist/watchlist.compone
 import { ShoppingCartComponent } from './user/cart/shopping-cart/shopping-cart.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-detail.component';
+import { AdminProductDetailComponent } from './admin/products/product-detail/product-detail.component';
+import { ProductManagementComponent } from './admin/products/product-management/product-management.component';
+import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 
 const routes: Routes = [
   {
@@ -59,6 +62,22 @@ const routes: Routes = [
   {
     path: 'admin/orders/:id',
     component: AdminOrderDetailComponent
+  },
+  {
+    path: 'admin/products',
+    component: ProductManagementComponent
+  },
+  {
+    path: 'admin/products/new',
+    component: ProductFormComponent
+  },
+  {
+    path: 'admin/products/:id/edit',
+    component: ProductFormComponent
+  },
+  {
+    path: 'admin/products/:id',
+    component: AdminProductDetailComponent
   },
   {
     path: '', 

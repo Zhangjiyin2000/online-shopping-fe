@@ -1,1 +1,17 @@
-<p>product-detail works!</p>
+<main class="admin-product-detail-page">
+  <a mat-button>Back to Order haven't implemented yet</a>
+
+  <p *ngIf="isLoading">Loading product detail for admin...</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <section *ngIf="!isLoading && product">
+    <h1>Product #{{ product.productId }}</h1>
+
+    <p><strong>Name:</strong> {{ product.name }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Retail Price:</strong> {{ product.retailPrice | currency }}</p>
+    <p><strong>Wholesale Price:</strong> {{ product.wholesalePrice | currency }}</p>
+    <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+
+  </section>
+</main>

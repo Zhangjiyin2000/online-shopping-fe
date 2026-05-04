@@ -24,6 +24,7 @@ import { ProductManagementComponent } from './admin/products/product-management/
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { OrderManagementComponent } from './admin/orders/order-management/order-management.component';
 import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-detail.component';
+import { AdminProductDetailComponent } from './admin/products/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-det
     ProductManagementComponent,
     ProductFormComponent,
     OrderManagementComponent,
-    AdminOrderDetailComponent
+    AdminOrderDetailComponent,
+    AdminProductDetailComponent
   ],
   imports: [
     BrowserModule,

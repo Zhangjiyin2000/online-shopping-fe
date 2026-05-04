@@ -1,1 +1,51 @@
-<p>product-form works!</p>
+<main class="product-form-page">
+  <section class="product-form-panel">
+    <h1>Product Form</h1>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+      <label for="Name">Name</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        autocomplete="name"
+      >
+
+      <label for="description">Description</label>
+      <input
+        id="description"
+        type="text"
+        formControlName="description"
+      >
+
+      <label for="wholesalePrice">Wholesale Price</label>
+      <input
+        id="wholesalePrice"
+        type="text"
+        formControlName="wholesalePrice"
+      >
+
+      <label for="retailPrice">Retail Price</label>
+      <input
+        id="retailPrice"
+        type="text"
+        formControlName="retailPrice"
+      >
+
+      <label for="retailPrice">Quantity</label>
+      <input
+        id="Quantity"
+        type="number"
+        formControlName="quantity"
+      >
+     
+
+      <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="form-success" *ngIf="successMessage">{{ successMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        Submit
+      </button>
+    </form>
+  </section>
+</main>

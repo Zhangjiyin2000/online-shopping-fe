@@ -1,1 +1,78 @@
-<p>product-management works!</p>
+<main class="product-management-page">
+  <h1>Product List</h1>
+
+  <p *ngIf="isLoading">Loading orders...</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <table
+    mat-table
+    [dataSource]="products"
+    class="mat-elevation-z8"
+    *ngIf="!isLoading && products.length > 0"
+  >
+    <ng-container matColumnDef="productId">
+      <th mat-header-cell *matHeaderCellDef>Product ID</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.productId }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.name }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.description }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="retailPrice">
+      <th mat-header-cell *matHeaderCellDef>Retail Price</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.retailPrice }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wholesalePrice">
+      <th mat-header-cell *matHeaderCellDef>Wholesale Price</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.wholesalePrice }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.quantity }}
+      </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let product">
+        <a mat-button color="primary" [routerLink]="['/admin/products/new', product.productId, 'edit']">
+          Edit
+        </a>
+
+        <a mat-button color="primary" [routerLink]="['/admin/products', product.productId]" (click)="getProductDetailByIdForAdmin(product.productId)">
+          View
+        </a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <p *ngIf="!isLoading && !errorMessage && products.length === 0">
+    Users have no product list yet.
+  </p>
+
+   
+</main>
