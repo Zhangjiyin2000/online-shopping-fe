@@ -21,16 +21,28 @@ export class AdminOrderDetailComponent {
   ) {}
 
   ngOnInit(): void {
-    const orderId = Number(this.route.snapshot.paramMap.get('id'));
-    this.loadOrderDetail(orderId);
+    this.route.paramMap.subscribe(params => {
+      const orderId = Number(params.get('id'));
+      console.log('route orderId:', orderId);
+
+      if (!orderId) {
+        this.errorMessage = 'Invalid order id.';
+        return;
+      }
+
+      this.loadOrderDetail(orderId);
+    })
   }
 
   loadOrderDetail(orderId: number): void {
+    console.log('loading order detail:', orderId);
+    
     this.isLoading = true;
     this.errorMessage = '';
 
     this.adminOrderService.getOrderDetail(orderId).subscribe({
       next: (order) => {
+        console.log('loaded admin order:', order);
         this.order = order;
         this.isLoading = false;
       },

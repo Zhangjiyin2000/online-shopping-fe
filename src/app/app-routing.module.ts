@@ -13,6 +13,7 @@ import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-det
 import { AdminProductDetailComponent } from './admin/products/product-detail/product-detail.component';
 import { ProductManagementComponent } from './admin/products/product-management/product-management.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
+import { OrderManagementComponent } from './admin/orders/order-management/order-management.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'admin-home/:id',
     component: AdminHomeComponent
+  },
+  {
+    path: 'admin/orders',
+    component: OrderManagementComponent
   },
   {
     path: 'admin/orders/:id',
