@@ -1,0 +1,14 @@
+.product-form-panel {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.product-form-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.product-form-panel mat-form-field {
+  width: 100%;
+}

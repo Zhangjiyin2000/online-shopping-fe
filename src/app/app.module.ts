@@ -13,6 +13,8 @@ import { TopItemsComponent } from './user/stats/top-items/top-items.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
 import { ProductListComponent } from './user/products/product-list/product-list.component';
@@ -56,7 +58,9 @@ import { TotalSoldItemsComponent } from './admin/stats/total-sold-items/total-so
     HttpClientModule,
     MatTableModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {
