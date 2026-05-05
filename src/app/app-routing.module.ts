@@ -14,6 +14,8 @@ import { AdminProductDetailComponent } from './admin/products/product-detail/pro
 import { ProductManagementComponent } from './admin/products/product-management/product-management.component';
 import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 import { OrderManagementComponent } from './admin/orders/order-management/order-management.component';
+import { adminGuard } from './guards/admin.guard';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,63 +28,78 @@ const routes: Routes = [
   },
   { 
     path: 'home', 
-    component: HomeComponent 
+    component: HomeComponent,
+    canActivate: [authGuard]
   },
   { 
     path: 'orders/:id', 
-    component: OrderDetailComponent 
+    component: OrderDetailComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'products',
-    component: ProductListComponent
+    component: ProductListComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'products/:id',
-    component: ProductDetailComponent
+    component: ProductDetailComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'watchlist',
-    component: WatchlistComponent
+    component: WatchlistComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'watchlist/:id',
-    component: WatchlistComponent
+    component: WatchlistComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'cart',
-    component: ShoppingCartComponent
+    component: ShoppingCartComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'admin-home',
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin-home/:id',
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin/orders',
-    component: OrderManagementComponent
+    component: OrderManagementComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin/orders/:id',
-    component: AdminOrderDetailComponent
+    component: AdminOrderDetailComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin/products',
-    component: ProductManagementComponent
+    component: ProductManagementComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin/products/new',
-    component: ProductFormComponent
+    component: ProductFormComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin/products/:id/edit',
-    component: ProductFormComponent
+    component: ProductFormComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'admin/products/:id',
-    component: AdminProductDetailComponent
+    component: AdminProductDetailComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: '', 

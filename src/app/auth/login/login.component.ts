@@ -37,6 +37,7 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.getRawValue()).subscribe({
       next: (response) => {
+        localStorage.setItem('role', JSON.stringify(response.role));
         this.isSubmitting = false;
         this.successMessage = response.message;
         if (response.role === 2) {

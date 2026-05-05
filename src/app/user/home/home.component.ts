@@ -20,6 +20,7 @@ export class HomeComponent {
   ];
 
   isLoading = false;
+  successMessage = '';
   errorMessage = '';
 
   constructor(private userOrderService: UserOrderService) {}
@@ -53,5 +54,22 @@ export class HomeComponent {
     return order.items.reduce((total, item) => {
       return total + item.quantity * item.purchasedPrice;
     }, 0);
+  }
+
+  cancelOrder(order: Order): void {
+
+    this.userOrderService.cancelOrder(order.orderId).subscribe({
+      next: (updatedOrder) => {
+        this.orders = this.orders.map(existingOrder =>
+          existingOrder.orderId === updatedOrder.orderId ? updatedOrder : existingOrder
+        );
+        // Or load order again to guarantee the frontend matches the database
+        // this.loadOrders();
+        this.successMessage = `Canceled Order#${order.orderId} successfully.`;
+      },
+      error: () => {
+        this.errorMessage = 'Failed to cancel order.'
+      }
+    });
   }
 }

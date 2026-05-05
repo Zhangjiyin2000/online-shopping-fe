@@ -62,8 +62,8 @@ export class OrderManagementComponent {
   completeOrder(order: AdminOrder): void {
     this.adminOrderService.completeOrder(order.orderId).subscribe({
       next: (order) => {
-        this.order = order;
         this.successMessage = `Completed #${order.orderId} order successfully.`;
+        this.loadOrders();
       },
       error: (error: HttpErrorResponse) => {
         console.log('Failed to complete an order.', error);
@@ -75,8 +75,8 @@ export class OrderManagementComponent {
   cancelOrder(order: AdminOrder): void {
     this.adminOrderService.cancelOrder(order.orderId).subscribe({
       next: (order) => {
-        this.order = order;
         this.successMessage = `Canceled #${order.orderId} order successfully.`;
+        this.loadOrders();
       },
       error: (error: HttpErrorResponse) => {
         console.log('Failed to cancel an order.', error);
