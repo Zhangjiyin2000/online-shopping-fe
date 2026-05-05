@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   onSubmit(): void {
@@ -37,6 +39,11 @@ export class LoginComponent {
       next: (response) => {
         this.isSubmitting = false;
         this.successMessage = response.message;
+        if (response.role === 2) {
+          this.router.navigate(['/admin-home']);
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error: (error) => {
         this.isSubmitting = false;
