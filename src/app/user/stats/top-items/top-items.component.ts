@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { PurchasedProductSummary } from 'src/app/models/stats.model';
+import { PurchasedProductSummary, RecentPurchasedSummary } from 'src/app/models/stats.model';
 import { UserProductService} from 'src/app/services/user-product.service';
 import { UserStatsService } from 'src/app/services/user-stats.service';
 
@@ -11,7 +11,7 @@ import { UserStatsService } from 'src/app/services/user-stats.service';
 })
 export class TopItemsComponent implements OnInit {
   frequentProducts: PurchasedProductSummary[] = [];
-  recentProducts: PurchasedProductSummary[] = [];
+  recentProducts: RecentPurchasedSummary[] = [];
   errorMessage = '';
 
   constructor(private userStatsService: UserStatsService) {}

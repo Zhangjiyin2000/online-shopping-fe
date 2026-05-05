@@ -17,7 +17,7 @@
     <mat-card-content>
       <ol>
         <li *ngFor="let product of recentProducts">
-          {{ product.name }} ({{ product.totalQuantity }} purchased)
+          {{ product.name }} ({{ product.datePlaced | date: 'medium' }} purchased)
         </li>
       </ol>
     </mat-card-content>

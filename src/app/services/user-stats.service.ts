@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PurchasedProductSummary } from '../models/stats.model';
+import { PurchasedProductSummary, RecentPurchasedSummary } from '../models/stats.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -15,6 +15,6 @@ export class UserStatsService {
   }
 
   getMostRecentlyPurchasedProducts(limit: number) {
-    return this.http.get<PurchasedProductSummary[]>(`${this.baseUrl}/products/recent/${limit}`);
+    return this.http.get<RecentPurchasedSummary[]>(`${this.baseUrl}/products/recent/${limit}`);
   }
 }
