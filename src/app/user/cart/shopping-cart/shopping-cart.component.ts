@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/models/cart.model';
 import { UserCartService } from 'src/app/services/user-cart.service';
 
@@ -19,11 +20,26 @@ export class ShoppingCartComponent {
   successMessage = '';
   errorMessage = '';
   isLoading = false;
+  backRoute = '/home';
+  backLabel = 'Back to Home';
 
-  constructor(private userCartService: UserCartService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private userCartService: UserCartService
+  ) {}
 
   ngOnInit(): void {
+    this.setBackLink();
     this.loadCartItems();
+  }
+
+  setBackLink(): void {
+    const from = this.route.snapshot.queryParamMap.get('from');
+
+    if (from === 'products') {
+      this.backRoute = '/products';
+      this.backLabel = 'Back to Products';
+    }
   }
 
   loadCartItems(): void {

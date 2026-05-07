@@ -10,6 +10,10 @@
   padding: 0;
 }
 
+:host-context(.admin-home-page) .back-link {
+  display: none;
+}
+
 .order-management-page table {
   width: 100%;
   margin-top: 24px;

@@ -1,3 +1,21 @@
 :host {
   display: block;
 }
+
+.admin-home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-home-header h1 {
+  margin: 0;
+}
+
+.admin-home-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}

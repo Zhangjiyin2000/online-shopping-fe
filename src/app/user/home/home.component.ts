@@ -68,7 +68,7 @@ export class HomeComponent {
         this.successMessage = `Canceled Order#${order.orderId} successfully.`;
       },
       error: () => {
-        this.errorMessage = 'Failed to cancel order.'
+        this.errorMessage = `Failed to cancel order#${order.orderId}.`;
       }
     });
   }

@@ -53,13 +53,13 @@ export class ProductListComponent {
   addWatchlistByProductId(productId: number): void {
       this.userWatchlistService.addProductToWatchlist(productId).subscribe({
         next: () => {
-          this.router.navigate(['/watchlist']);
-          this.successMessage = 'Product added to watchlist.';
+          this.router.navigate(['/watchlist'], { queryParams: { from: 'products' } });
+          this.successMessage = `Product#${productId} added to watchlist.`;
           this.isLoading = false;
         },
         error: (error: HttpErrorResponse) => {
           console.error('Failed to add product to watchlist', error);
-          this.errorMessage = `Failed to add product to watchlist. Status: ${error.status || 'unknown'}`;
+          this.errorMessage = `Failed to add product#${productId} to watchlist. Status: ${error.status || 'unknown'}`;
           this.isLoading = false;
         }
       })
@@ -79,9 +79,17 @@ export class ProductListComponent {
       })
     }
 
-    addToCart(product: UserProductDetail): void {
-      this.userCartService.addProductToCart(product);
-      this.successMessage = 'Product added to shopping cart.';
-    }
+  addToCart(product: UserProductDetail): void {
+    this.userCartService.addProductToCart(product);
+    this.showSuccessMessage(`Product#${product.productId} added to shopping cart.`);
+    this.router.navigate(['/cart'], { queryParams: { from: 'products' } });
+  }
+
+  private showSuccessMessage(message: string): void {
+    this.successMessage = message;
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 3000);
+  }
   
 }

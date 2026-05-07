@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserProductDetail } from 'src/app/models/product.model';
 import { UserWatchlistService } from 'src/app/services/user-watchlist.service';
 
@@ -21,12 +22,25 @@ export class WatchlistComponent {
   errorMessage = '';
   userWatchlist: UserProductDetail[] = [];
   userWatchlistProduct: UserProductDetail | null = null;
+  backRoute = '/home';
+  backLabel = 'Back to Home';
 
   constructor(
+    private route: ActivatedRoute,
     private userWatchlistService: UserWatchlistService) {}
 
   ngOnInit(): void {
+    this.setBackLink();
     this.loadAllWatchlistProducts();
+  }
+
+  setBackLink(): void {
+    const from = this.route.snapshot.queryParamMap.get('from');
+
+    if (from === 'products') {
+      this.backRoute = '/products';
+      this.backLabel = 'Back to Products';
+    }
   }
 
   loadAllWatchlistProducts(): void {
@@ -52,12 +66,12 @@ export class WatchlistComponent {
         // this.userWatchlist = this.userWatchlist.filter(
         //   product => product.productId !== productId
         // );
-        this.successMessage = 'Product removed from watchlist.'
+        this.successMessage = `Product#${productId} removed from watchlist.`
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {
         console.error('Failed to remove product to watchlist', error);
-        this.errorMessage = `Failed to remove product to watchlist. Status: ${error.status || 'unknown'}`;
+        this.errorMessage = `Failed to remove product#${productId} to watchlist. Status: ${error.status || 'unknown'}`;
         this.isLoading = false;
       }
     })

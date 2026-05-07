@@ -1,8 +1,22 @@
 <main class="admin-home-page">
 
-  <h1>Admin Home Page</h1>
+  <div class="admin-home-header">
+    <h1>Admin Home</h1>
 
-  <app-order-management></app-order-management>
+    <div class="admin-home-actions">
+      <a mat-raised-button color="primary" routerLink="/admin/products">
+        Product Management
+      </a>
+
+      <a mat-raised-button color="primary" routerLink="/admin/orders">
+        Order Management
+      </a>
+    </div>
+  </div>
+
+  <app-order-management (orderStatusChanged)="refreshStats()"></app-order-management>
+
+  <h2>Admin Stats</h2>
 
   <app-admin-stats></app-admin-stats>
 

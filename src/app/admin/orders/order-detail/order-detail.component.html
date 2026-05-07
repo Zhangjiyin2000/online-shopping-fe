@@ -1,5 +1,5 @@
 <main class="admin-order-detail-page">
-  <a mat-button routerLink="/admin-home">Back to Admin Orders</a>
+  <a class="back-link" routerLink="/admin-home">← Back to Admin Orders</a>
 
   <p *ngIf="isLoading">Loading order detail...</p>
   <p class="success" *ngIf="successMessage">{{ successMessage }}</p>

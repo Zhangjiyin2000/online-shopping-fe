@@ -14,6 +14,7 @@ export class OrderDetailComponent implements OnInit {
   displayedColumns = ['productName', 'quantity', 'price', 'subtotal', 'actions'];
   isLoading = false;
   errorMessage = '';
+  successMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -62,9 +63,10 @@ export class OrderDetailComponent implements OnInit {
     this.userOrderService.cancelOrder(this.order.orderId).subscribe({
       next: (updatedOrder) => {
         this.order = updatedOrder;
+        this.successMessage = `Canceled order successfully.`;
       },
       error: () => {
-        this.errorMessage = 'Failed to cancel order.'
+        this.errorMessage = 'Failed to cancel order.';
       }
     });
   }

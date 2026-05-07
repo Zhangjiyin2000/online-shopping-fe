@@ -62,18 +62,4 @@ export class ProductManagementComponent {
     });
   }
 
-  EditProduct(productId: number, payload: AdminProductRequest) {
-    this.adminProductService.updateProduct(productId, payload).subscribe({
-      next: (product) => {
-        this.product = product;
-        this.isLoading = false;
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error(`Failed to update product #${productId} for admin`, error);
-        this.errorMessage = `Failed to update product #${productId} for admin. Status: ${error.status || 'unknown'}`;
-        this.isLoading = false;
-      }
-    });
-  }
-
 }

@@ -1,7 +1,8 @@
 <main class="order-detail-page">
-  <a mat-button routerLink="/home">Back to Orders</a>
+  <a class="back-link" routerLink="/home">← Back to Orders</a>
 
   <p *ngIf="isLoading">Loading order detail...</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
   <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
   <section *ngIf="!isLoading && order">

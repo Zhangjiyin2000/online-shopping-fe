@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductProfitSummary, PurchasedProductSummary } from 'src/app/models/stats.model';
 import { AdminStatsService } from 'src/app/services/admin-stats.service';
+import { TotalSoldItemsComponent } from '../total-sold-items/total-sold-items.component';
 
 @Component({
   selector: 'app-admin-stats',
@@ -9,6 +10,8 @@ import { AdminStatsService } from 'src/app/services/admin-stats.service';
   styleUrls: ['./admin-stats.component.scss']
 })
 export class AdminStatsComponent {
+  @ViewChild(TotalSoldItemsComponent) totalSoldItems?: TotalSoldItemsComponent;
+
   poplarProducts: PurchasedProductSummary[] = [];
   profitableProducts: ProductProfitSummary[] = [];
   errorMessage = '';
@@ -17,6 +20,11 @@ export class AdminStatsComponent {
 
   ngOnInit(): void {
     this.loadTopProducts();
+  }
+
+  refreshStats(): void {
+    this.loadTopProducts();
+    this.totalSoldItems?.loadTotalSoldItems();
   }
 
   loadTopProducts(): void {

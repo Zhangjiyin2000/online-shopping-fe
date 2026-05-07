@@ -1,12 +1,24 @@
 <main class="home-page">
-  <h1>My Home</h1>
+  <div class="home-header">
+    <h1>My Home</h1>
+
+    <div class="home-actions">
+      <a mat-raised-button color="primary" routerLink="/cart" [queryParams]="{ from: 'home' }">
+        Browse Shopping Cart
+      </a>
+
+      <a mat-raised-button color="primary" routerLink="/watchlist" [queryParams]="{ from: 'home' }">
+        Browse Watchlist
+      </a>
+
+      <a mat-raised-button color="primary" routerLink="/products">
+        Browse Products
+      </a>
+    </div>
+  </div>
 
   <div class="page-header">
     <h2>My Orders</h2>
-
-    <a mat-raised-button color="primary" routerLink="/products">
-      Browse Products
-    </a>
   </div>
 
   <p *ngIf="isLoading">Loading orders...</p>
@@ -63,7 +75,7 @@
           View
         </a>
 
-        <button mat-button color="warn">
+        <button mat-button color="warn" (click)="cancelOrder(order)">
           Cancel
         </button>
       </td>

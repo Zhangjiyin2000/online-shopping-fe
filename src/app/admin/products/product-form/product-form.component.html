@@ -1,5 +1,7 @@
 <main class="product-form-page">
   <section class="product-form-panel">
+    <a class="back-link" routerLink="/admin/products">← Back to Products</a>
+
     <h1>Product Form</h1>
 
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>

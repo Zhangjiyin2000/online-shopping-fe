@@ -8,13 +8,12 @@ main[class$="-page"] {
   font-size: 16px;
 }
 
-main[class$="-page"] > h1 {
+main[class$="-page"] h1 {
   margin: 0 0 24px;
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 500;
 }
 
-main[class$="-page"] h1,
 main[class$="-page"] h2 {
   margin: 24px 0 16px;
 }
@@ -38,6 +37,7 @@ main[class$="-page"] .items-table {
 main[class$="-page"] .items-table th,
 main[class$="-page"] .items-table td {
   border-bottom: 1px solid #e0e0e0;
+  text-align: center;
 }
 
 main[class$="-page"] .items-table tbody tr:last-child td {
@@ -46,6 +46,13 @@ main[class$="-page"] .items-table tbody tr:last-child td {
 
 main[class$="-page"] th,
 main[class$="-page"] td {
+  padding: 14px 16px;
+  font-size: 15px;
+  text-align: center;
+}
+
+section[class$="-page"] th,
+section[class$="-page"] td {
   padding: 14px 16px;
   font-size: 15px;
   text-align: center;
@@ -65,6 +72,19 @@ main[class$="-page"] .detail-actions {
   display: flex;
   gap: 12px;
   margin: 20px 0 28px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #3f51b5;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
 
 .success {

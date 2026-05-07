@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AdminOrder } from 'src/app/models/order.model';
 import { AdminOrderService } from 'src/app/services/admin-order.service';
 
@@ -9,6 +9,8 @@ import { AdminOrderService } from 'src/app/services/admin-order.service';
   styleUrls: ['./order-management.component.scss']
 })
 export class OrderManagementComponent {
+  @Output() orderStatusChanged = new EventEmitter<void>();
+
   order: AdminOrder = {} as AdminOrder;
   orders: AdminOrder[] = [];
   displayedColumns: string[] = [
@@ -64,6 +66,7 @@ export class OrderManagementComponent {
       next: (order) => {
         this.successMessage = `Completed #${order.orderId} order successfully.`;
         this.loadOrders();
+        this.orderStatusChanged.emit();
       },
       error: (error: HttpErrorResponse) => {
         console.log('Failed to complete an order.', error);
@@ -77,6 +80,7 @@ export class OrderManagementComponent {
       next: (order) => {
         this.successMessage = `Canceled #${order.orderId} order successfully.`;
         this.loadOrders();
+        this.orderStatusChanged.emit();
       },
       error: (error: HttpErrorResponse) => {
         console.log('Failed to cancel an order.', error);

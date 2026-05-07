@@ -1,5 +1,11 @@
 <main class="watchlist-page">
-  <h1>Watchlist</h1>
+  <div class="page-header">
+    <h1>Watchlist</h1>
+
+    <a mat-stroked-button [routerLink]="backRoute">
+      {{ backLabel }}
+    </a>
+  </div>
 
   <p *ngIf="isLoading">Loading orders...</p>
   <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
@@ -57,4 +63,3 @@
   </p>
 
 </main>
-
