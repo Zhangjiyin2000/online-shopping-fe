@@ -1,5 +1,11 @@
 <main class="product-list-page">
-  <h1>Product List</h1>
+  <div class="page-header">
+    <h1>Product List</h1>
+
+    <a mat-stroked-button routerLink="/home">
+      Back to Home
+    </a>
+  </div>
 
   <p *ngIf="isLoading">Loading orders...</p>
   <p class="success" *ngIf="successMessage">{{ successMessage }}</p>

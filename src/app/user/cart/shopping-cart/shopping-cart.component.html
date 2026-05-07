@@ -53,7 +53,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <p><strong>Total: {{ getCartTotal() | currency }}</strong></p>
+  <p class="cart-total">
+    Total: <strong>{{ getCartTotal() | currency }}</strong>
+  </p>
 
   <p *ngIf="!isLoading && !errorMessage && cartItems.length === 0">
     You have no shopping cart items yet.

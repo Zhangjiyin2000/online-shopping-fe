@@ -1,5 +1,13 @@
 <main class="home-page">
-  <h1>My Orders</h1>
+  <h1>My Home</h1>
+
+  <div class="page-header">
+    <h2>My Orders</h2>
+
+    <a mat-raised-button color="primary" routerLink="/products">
+      Browse Products
+    </a>
+  </div>
 
   <p *ngIf="isLoading">Loading orders...</p>
   <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
@@ -68,6 +76,8 @@
   <p *ngIf="!isLoading && !errorMessage && orders.length === 0">
     You have no orders yet.
   </p>
+
+  <h2>My Shopping Stats</h2>
 
   <app-top-items></app-top-items>
 
