@@ -1,1 +1,9 @@
+<header class="app-header" *ngIf="authService.getToken()">
+  <span class="app-title">Online Shopping</span>
+
+  <button mat-raised-button color="warn" type="button" (click)="logout()">
+    Logout
+  </button>
+</header>
+
 <router-outlet></router-outlet>

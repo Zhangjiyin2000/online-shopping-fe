@@ -1,0 +1,25 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 40px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #ffffff;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #263238;
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 12px 16px;
+  }
+
+  .app-title {
+    font-size: 18px;
+  }
+}

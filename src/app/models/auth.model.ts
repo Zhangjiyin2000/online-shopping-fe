@@ -24,3 +24,13 @@ export interface RegisterResponse {
   email: string;
   username: string;
 }
+
+export interface JwtClaims {
+  sub: string;
+  authorities: string[];
+  userId: number;
+  role: number;
+  email: string;
+  iat: number;
+  exp: number;
+}
