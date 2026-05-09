@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { UserCartService } from 'src/app/services/user-cart.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { PlaceOrderDialogComponent } from '../../orders/place-order-dialog/place-order-dialog.component';
 
 @Component({
   selector: 'app-product-list',
@@ -36,7 +39,9 @@ export class ProductListComponent {
     private userProductService: UserProductService,
     private userWatchlistService: UserWatchlistService,
     private router: Router,
-    private userCartService: UserCartService
+    private userCartService: UserCartService,
+    private dialog: MatDialog,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -91,6 +96,23 @@ export class ProductListComponent {
     this.userCartService.addProductToCart(product);
     this.showSuccessMessage(`Product#${product.productId} added to shopping cart.`);
     this.router.navigate(['/cart'], { queryParams: { from: 'products' } });
+  }
+
+  openPlaceOrderDialog(): void {
+    if (!this.authService.isUser() || this.authService.isAdmin()) {
+      this.errorMessage = 'Only users can place orders.';
+      return;
+    }
+
+    const dialogRef = this.dialog.open(PlaceOrderDialogComponent, {
+      width: '720px'
+    });
+
+    dialogRef.afterClosed().subscribe((order) => {
+      if (order) {
+        this.showSuccessMessage(`Placed order #${order.orderId} successfully.`);
+      }
+    });
   }
 
   private showSuccessMessage(message: string): void {

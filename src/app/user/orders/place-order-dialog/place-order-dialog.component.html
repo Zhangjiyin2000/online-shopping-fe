@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Place Order</h2>
+
+<form [formGroup]="orderForm" (ngSubmit)="placeOrder()" novalidate>
+  <mat-dialog-content>
+    <div formArrayName="order" class="order-items">
+      <div
+        class="order-item-row"
+        *ngFor="let itemForm of orderItems.controls; let index = index"
+        [formGroupName]="index"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Product ID</mat-label>
+          <input matInput type="number" min="1" formControlName="productId">
+          <mat-error *ngIf="isProductIdInvalid(index)">
+            Product ID is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="number" min="1" formControlName="quantity">
+          <mat-error *ngIf="isQuantityInvalid(index)">
+            Quantity must be at least 1.
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          mat-button
+          color="warn"
+          type="button"
+          [disabled]="orderItems.length === 1"
+          (click)="removeOrderItem(index)">
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button type="button" (click)="addOrderItem()">
+      Add Item
+    </button>
+
+    <button mat-button type="button" mat-dialog-close>
+      Cancel
+    </button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting">
+      Place Order
+    </button>
+  </mat-dialog-actions>
+</form>

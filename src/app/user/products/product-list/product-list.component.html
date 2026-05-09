@@ -2,9 +2,20 @@
   <div class="page-header">
     <h1>Product List</h1>
 
-    <a mat-stroked-button routerLink="/home">
-      Back to Home
-    </a>
+    <div class="page-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        *ngIf="authService.isUser() && !authService.isAdmin()"
+        (click)="openPlaceOrderDialog()">
+        Place Order
+      </button>
+
+      <a mat-stroked-button routerLink="/home">
+        Back to Home
+      </a>
+    </div>
   </div>
 
   <p *ngIf="isLoading">Loading orders...</p>
@@ -55,6 +66,7 @@
         <button mat-button color="primary" (click)="addWatchlistByProductId(product.productId)">
           Add to Watchlist
         </button>
+
       </td>
     </ng-container>
 

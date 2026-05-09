@@ -67,9 +67,11 @@
     showFirstLastButtons>
   </mat-paginator>
 
-  <p class="cart-total">
-    Total: <strong>{{ getCartTotal() | currency }}</strong>
-  </p>
+  <div class="cart-summary" *ngIf="cartItems.length > 0">
+    <p class="cart-total">
+      Total: <strong>{{ getCartTotal() | currency }}</strong>
+    </p>
+  </div>
 
   <p *ngIf="!isLoading && !errorMessage && cartItems.length === 0">
     You have no shopping cart items yet.

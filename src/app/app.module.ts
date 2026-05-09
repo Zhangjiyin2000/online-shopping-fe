@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
 import { ProductListComponent } from './user/products/product-list/product-list.component';
@@ -29,6 +30,7 @@ import { OrderManagementComponent } from './admin/orders/order-management/order-
 import { AdminOrderDetailComponent } from './admin/orders/order-detail/order-detail.component';
 import { AdminProductDetailComponent } from './admin/products/product-detail/product-detail.component';
 import { TotalSoldItemsComponent } from './admin/stats/total-sold-items/total-sold-items.component';
+import { PlaceOrderDialogComponent } from './user/orders/place-order-dialog/place-order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { TotalSoldItemsComponent } from './admin/stats/total-sold-items/total-so
     OrderManagementComponent,
     AdminOrderDetailComponent,
     AdminProductDetailComponent,
-    TotalSoldItemsComponent
+    TotalSoldItemsComponent,
+    PlaceOrderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { TotalSoldItemsComponent } from './admin/stats/total-sold-items/total-so
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [
     {

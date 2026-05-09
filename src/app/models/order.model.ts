@@ -13,6 +13,15 @@ export interface Order {
   items: OrderItem[];
 }
 
+export interface PlaceOrderItem {
+  productId: number;
+  quantity: number;
+}
+
+export interface PlaceOrderRequest {
+  order: PlaceOrderItem[];
+}
+
 export interface AdminOrderItem extends OrderItem {
     wholesalePrice: number;
 }

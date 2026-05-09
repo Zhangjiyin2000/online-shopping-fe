@@ -1,6 +1,14 @@
+.cart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 20px;
+}
+
 .cart-total {
   width: fit-content;
-  margin: 20px 0 0 auto;
+  margin: 0;
   padding: 14px 20px;
   font-size: 18px;
 }
@@ -15,4 +23,15 @@
 
 .page-header h1 {
   margin: 0;
+}
+
+@media (max-width: 600px) {
+  .cart-summary {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cart-total {
+    width: auto;
+  }
 }

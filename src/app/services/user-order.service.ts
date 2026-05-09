@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Order } from '../models/order.model';
+import { Order, PlaceOrderRequest } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,10 @@ export class UserOrderService {
 
   getOrderDetail(orderId: number) {
     return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}`);
+  }
+
+  placeOrder(payload: PlaceOrderRequest): Observable<Order> {
+    return this.http.post<Order>(`${this.baseUrl}/orders`, payload);
   }
 
   cancelOrder(orderId: number): Observable<Order> {

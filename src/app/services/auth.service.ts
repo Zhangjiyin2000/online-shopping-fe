@@ -64,6 +64,10 @@ export class AuthService {
     return this.getAuthorities().includes('ROLE_ADMIN');
   }
 
+  isUser(): boolean {
+    return this.getAuthorities().includes('ROLE_USER');
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
