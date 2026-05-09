@@ -27,7 +27,7 @@
 
   <table
     mat-table
-    [dataSource]="orders"
+    [dataSource]="dataSource"
     class="mat-elevation-z8"
     *ngIf="!isLoading && orders.length > 0"
   >
@@ -84,6 +84,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator
+    *ngIf="!isLoading && orders.length > 0"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25]"
+    showFirstLastButtons>
+  </mat-paginator>
 
   <p *ngIf="!isLoading && !errorMessage && orders.length === 0">
     You have no orders yet.

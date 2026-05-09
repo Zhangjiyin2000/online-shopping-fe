@@ -22,3 +22,11 @@
   width: 100%;
   margin-top: 24px;
 }
+
+mat-paginator {
+  border: 1px solid var(--app-surface-border);
+  border-top: 0;
+  border-radius: 0 0 var(--app-surface-radius) var(--app-surface-radius);
+  background: var(--app-surface);
+  box-shadow: var(--app-surface-shadow);
+}

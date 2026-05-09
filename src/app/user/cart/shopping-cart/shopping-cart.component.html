@@ -14,7 +14,7 @@
 
   <table
     mat-table
-    [dataSource]="cartItems"
+    [dataSource]="dataSource"
     class="mat-elevation-z8"
     *ngIf="!isLoading && cartItems.length > 0"
   >
@@ -59,6 +59,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator
+    *ngIf="!isLoading && cartItems.length > 0"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25]"
+    showFirstLastButtons>
+  </mat-paginator>
 
   <p class="cart-total">
     Total: <strong>{{ getCartTotal() | currency }}</strong>

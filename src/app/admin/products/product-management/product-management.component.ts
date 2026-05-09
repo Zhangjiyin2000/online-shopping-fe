@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AdminProductDetail, AdminProductRequest } from 'src/app/models/product.model';
 import { AdminProductService } from 'src/app/services/admin-product.service';
@@ -10,6 +12,10 @@ import { AdminProductService } from 'src/app/services/admin-product.service';
   styleUrls: ['./product-management.component.scss']
 })
 export class ProductManagementComponent {
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  }
+
   displayedColumns: string[] = [
     'productId',
     'name',
@@ -23,6 +29,7 @@ export class ProductManagementComponent {
   successMessage = '';
   errorMessage = '';
   products: AdminProductDetail[] = [];
+  dataSource = new MatTableDataSource<AdminProductDetail>([]);
   product: AdminProductDetail | null = null;
   
   constructor(
@@ -38,6 +45,7 @@ export class ProductManagementComponent {
     this.adminProductService.getAllProducts().subscribe({
       next: (products) => {
         this.products = products;
+        this.dataSource.data = products;
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {

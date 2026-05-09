@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UserProductService } from 'src/app/services/user-product.service';
 import { UserProductDetail } from 'src/app/models/product.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserWatchlistService } from 'src/app/services/user-watchlist.service';
 import { Router } from '@angular/router';
 import { UserCartService } from 'src/app/services/user-cart.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-product-list',
@@ -12,6 +14,10 @@ import { UserCartService } from 'src/app/services/user-cart.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent {
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  }
+
   displayedColumns: string[] = [
     'productId',
     'name',
@@ -23,6 +29,7 @@ export class ProductListComponent {
   successMessage = '';
   errorMessage = '';
   userProductDetailList: UserProductDetail[] = [];
+  dataSource = new MatTableDataSource<UserProductDetail>([]);
   userWatchlistProduct: UserProductDetail | null = null;
   
   constructor(
@@ -40,6 +47,7 @@ export class ProductListComponent {
     this.userProductService.getAllProducts().subscribe({
       next: (userProductDetailList) => {
         this.userProductDetailList = userProductDetailList;
+        this.dataSource.data = userProductDetailList;
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {

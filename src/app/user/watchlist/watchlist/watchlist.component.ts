@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { UserProductDetail } from 'src/app/models/product.model';
 import { UserWatchlistService } from 'src/app/services/user-watchlist.service';
@@ -10,6 +12,10 @@ import { UserWatchlistService } from 'src/app/services/user-watchlist.service';
   styleUrls: ['./watchlist.component.scss']
 })
 export class WatchlistComponent {
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  }
+
   displayedColumns: string[] = [
     'productId',
     'name',
@@ -21,6 +27,7 @@ export class WatchlistComponent {
   successMessage = '';
   errorMessage = '';
   userWatchlist: UserProductDetail[] = [];
+  dataSource = new MatTableDataSource<UserProductDetail>([]);
   userWatchlistProduct: UserProductDetail | null = null;
   backRoute = '/home';
   backLabel = 'Back to Home';
@@ -48,6 +55,7 @@ export class WatchlistComponent {
       next: (userWatchlist) => {
         console.table(userWatchlist);
         this.userWatchlist = userWatchlist;
+        this.dataSource.data = userWatchlist;
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {

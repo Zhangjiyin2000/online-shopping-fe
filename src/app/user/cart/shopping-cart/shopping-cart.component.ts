@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/models/cart.model';
 import { UserCartService } from 'src/app/services/user-cart.service';
@@ -9,7 +11,12 @@ import { UserCartService } from 'src/app/services/user-cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent {
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  }
+
   cartItems: CartItem[] = [];
+  dataSource = new MatTableDataSource<CartItem>([]);
   displayedColumns = [
     'name',
     'quantity',
@@ -45,6 +52,7 @@ export class ShoppingCartComponent {
   loadCartItems(): void {
     this.isLoading = true;
     this.cartItems = this.userCartService.getAllCartItems();
+    this.dataSource.data = this.cartItems;
     this.isLoading = false;
   }
 

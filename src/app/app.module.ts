@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProductDetailComponent } from './user/products/product-detail/product-detail.component';
 import { ProductListComponent } from './user/products/product-list/product-list.component';
@@ -60,7 +61,8 @@ import { TotalSoldItemsComponent } from './admin/stats/total-sold-items/total-so
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
   providers: [
     {

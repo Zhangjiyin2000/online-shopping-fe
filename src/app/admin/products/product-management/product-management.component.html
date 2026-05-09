@@ -18,7 +18,7 @@
 
   <table
     mat-table
-    [dataSource]="products"
+    [dataSource]="dataSource"
     class="mat-elevation-z8"
     *ngIf="!isLoading && products.length > 0"
   >
@@ -80,6 +80,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator
+    *ngIf="!isLoading && products.length > 0"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25]"
+    showFirstLastButtons>
+  </mat-paginator>
 
   <p *ngIf="!isLoading && !errorMessage && products.length === 0">
     Users have no product list yet.

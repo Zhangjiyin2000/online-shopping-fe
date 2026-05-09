@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { UserOrderService } from 'src/app/services/user-order.service';
 import { Order } from 'src/app/models/order.model';
 import { TopItemsComponent } from '../stats/top-items/top-items.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,12 @@ import { TopItemsComponent } from '../stats/top-items/top-items.component';
 })
 export class HomeComponent {
   @ViewChild(TopItemsComponent) topItems?: TopItemsComponent;
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  }
 
   orders: Order[] = [];
+  dataSource = new MatTableDataSource<Order>([]);
   displayedColumns: string[] = [
     'orderId',
     'datePlaced',
@@ -39,6 +45,7 @@ export class HomeComponent {
     this.userOrderService.getAllOrders().subscribe({
       next: (orders) => {
         this.orders = orders;
+        this.dataSource.data = orders;
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {
@@ -66,6 +73,7 @@ export class HomeComponent {
         this.orders = this.orders.map(existingOrder =>
           existingOrder.orderId === updatedOrder.orderId ? updatedOrder : existingOrder
         );
+        this.dataSource.data = this.orders;
         // Or load order again to guarantee the frontend matches the database
         // this.loadOrders();
         this.successMessage = `Canceled Order#${order.orderId} successfully.`;

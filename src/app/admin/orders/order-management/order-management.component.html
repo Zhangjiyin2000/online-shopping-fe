@@ -89,6 +89,16 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
+  <mat-paginator
+    *ngIf="!isLoading && totalOrders > 0"
+    [length]="totalOrders"
+    [pageIndex]="page - 1"
+    [pageSize]="pageSize"
+    [hidePageSize]="true"
+    showFirstLastButtons
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
   <p *ngIf="!isLoading && !errorMessage && orders.length === 0">
     Users have no orders yet.
   </p> 

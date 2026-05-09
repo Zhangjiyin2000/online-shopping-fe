@@ -67,6 +67,16 @@ main[class$="-page"] .items-table {
   box-shadow: var(--app-surface-shadow) !important;
 }
 
+main[class$="-page"] mat-paginator,
+section[class$="-page"] mat-paginator {
+  margin-top: 0;
+  border: 1px solid var(--app-surface-border);
+  border-top: 0;
+  border-radius: 0 0 var(--app-surface-radius) var(--app-surface-radius);
+  background: var(--app-surface);
+  box-shadow: var(--app-surface-shadow);
+}
+
 main[class$="-page"] .mat-mdc-header-row,
 main[class$="-page"] .items-table thead tr {
   background: var(--app-table-header);

@@ -22,3 +22,11 @@ export interface AdminOrder extends Order {
     username: string;
     items: AdminOrderItem[];
 }
+
+export interface AdminOrderPage {
+    page: number;
+    pageSize: number;
+    orders: AdminOrder[];
+    totalOrders: number;
+    totalPages: number;
+}

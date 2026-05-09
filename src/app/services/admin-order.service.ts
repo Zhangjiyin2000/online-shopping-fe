@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdminOrder } from '../models/order.model';
+import { AdminOrder, AdminOrderPage } from '../models/order.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,6 +13,14 @@ export class AdminOrderService {
 
   getAllOrders() {
     return this.http.get<AdminOrder[]>(`${this.baseUrl}/orders/all`);
+  }
+
+  getOrdersPage(page: number): Observable<AdminOrderPage> {
+    return this.http.get<AdminOrderPage>(`${this.baseUrl}/orders/all`, {
+      params: {
+        page
+      }
+    });
   }
 
   getOrderDetail(orderId: number) {

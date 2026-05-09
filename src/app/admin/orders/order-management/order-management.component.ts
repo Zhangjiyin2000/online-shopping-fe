@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { AdminOrder } from 'src/app/models/order.model';
 import { AdminOrderService } from 'src/app/services/admin-order.service';
 
@@ -27,6 +28,10 @@ export class OrderManagementComponent {
   isLoading = false;
   successMessage = '';
   errorMessage = '';
+  page = 1;
+  pageSize = 5;
+  totalOrders = 0;
+  totalPages = 0;
 
   constructor(private adminOrderService: AdminOrderService) {}
 
@@ -34,13 +39,17 @@ export class OrderManagementComponent {
     this.loadOrders();
   }
 
-  loadOrders(): void {
+  loadOrders(page: number = this.page): void {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.adminOrderService.getAllOrders().subscribe({
-      next: (orders) => {
-        this.orders = orders;
+    this.adminOrderService.getOrdersPage(page).subscribe({
+      next: (response) => {
+        this.orders = response.orders;
+        this.page = response.page;
+        this.pageSize = response.pageSize;
+        this.totalOrders = response.totalOrders;
+        this.totalPages = response.totalPages;
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {
@@ -49,6 +58,10 @@ export class OrderManagementComponent {
         this.isLoading = false;
       }
     });
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.loadOrders(event.pageIndex + 1);
   }
 
   getProductNames(order: AdminOrder): string {
