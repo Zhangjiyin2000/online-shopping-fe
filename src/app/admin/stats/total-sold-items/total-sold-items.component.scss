@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.total-sold-items,
+.stat-card {
+  height: 100%;
+}
+
+.total-sold-items {
+  padding: 0;
+}
+
+.stat-card {
+  min-height: 220px;
+}
+
+.stat-card-title {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.stat-card-content {
+  display: flex;
+  align-items: center;
+  height: calc(100% - 48px);
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  color: #263238;
+}

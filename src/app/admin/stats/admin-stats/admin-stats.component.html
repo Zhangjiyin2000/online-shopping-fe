@@ -1,10 +1,10 @@
 <section class="admin-stats">
   <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-  <mat-card>
-    <mat-card-title>Most profitable Items</mat-card-title>
+  <mat-card class="stat-card">
+    <mat-card-title class="stat-card-title">Most Profitable Items</mat-card-title>
     <mat-card-content>
-      <ol>
+      <ol class="stat-list">
         <li *ngFor="let product of profitableProducts">
           {{ product.name }} ({{ product.totalProfit | currency }})
         </li>
@@ -12,10 +12,10 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card>
-    <mat-card-title>Top 3 popular/sold Items</mat-card-title>
+  <mat-card class="stat-card">
+    <mat-card-title class="stat-card-title">Top 3 Popular Items</mat-card-title>
     <mat-card-content>
-      <ol>
+      <ol class="stat-list">
         <li *ngFor="let product of poplarProducts">
           {{ product.name }} ({{ product.totalQuantity }} sold)
         </li>

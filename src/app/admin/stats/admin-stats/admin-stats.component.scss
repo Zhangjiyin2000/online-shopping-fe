@@ -1,0 +1,29 @@
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  min-height: 220px;
+}
+
+.stat-card-title {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.stat-list {
+  margin: 0;
+  padding-left: 22px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.error {
+  grid-column: 1 / -1;
+}

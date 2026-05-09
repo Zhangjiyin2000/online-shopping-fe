@@ -3,6 +3,14 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+:root {
+  --app-surface: #ffffff;
+  --app-surface-border: #e0e5ec;
+  --app-surface-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+  --app-surface-radius: 8px;
+  --app-table-header: #f7f9fc;
+}
+
 main[class$="-page"] {
   padding: 32px;
   font-size: 16px;
@@ -15,27 +23,56 @@ main[class$="-page"] h1 {
   line-height: 1.2;
 }
 
-main[class$="-page"] h2 {
+main[class$="-page"] h2,
+section[class$="-page"] h2 {
   margin: 24px 0 16px;
 }
 
-main[class$="-page"] h2 {
+main[class$="-page"] h2,
+section[class$="-page"] h2 {
   font-size: 24px;
   font-weight: 600;
   line-height: 1.25;
+}
+
+main[class$="-page"] .page-header,
+section[class$="-page"] .page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 24px;
+}
+
+main[class$="-page"] .page-header h1,
+main[class$="-page"] .page-header h2,
+section[class$="-page"] .page-header h1,
+section[class$="-page"] .page-header h2 {
+  margin: 0;
 }
 
 main[class$="-page"] table {
   width: 100%;
 }
 
+main[class$="-page"] .mat-mdc-table,
 main[class$="-page"] .items-table {
-  margin-top: 16px;
-  border-collapse: collapse;
-  background: #fff;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid var(--app-surface-border);
+  border-radius: var(--app-surface-radius);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--app-surface);
+  box-shadow: var(--app-surface-shadow) !important;
 }
 
+main[class$="-page"] .mat-mdc-header-row,
+main[class$="-page"] .items-table thead tr {
+  background: var(--app-table-header);
+}
+
+main[class$="-page"] .mat-mdc-header-cell,
 main[class$="-page"] .items-table th,
 main[class$="-page"] .items-table td {
   border-bottom: 1px solid #e0e0e0;
@@ -65,9 +102,40 @@ main[class$="-page"] a[mat-button] {
   font-size: 14px;
 }
 
-main[class$="-page"] mat-card {
-  margin-top: 20px;
-  padding: 16px;
+main[class$="-page"] mat-card,
+section.top-items mat-card,
+section.admin-stats mat-card,
+main.total-sold-items mat-card,
+.cart-total {
+  border: 1px solid var(--app-surface-border);
+  border-radius: var(--app-surface-radius);
+  background: var(--app-surface);
+  box-shadow: var(--app-surface-shadow) !important;
+}
+
+main[class$="-page"] mat-card,
+section.top-items mat-card,
+section.admin-stats mat-card,
+main.total-sold-items mat-card {
+  padding: 20px;
+}
+
+mat-card-title {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #263238;
+}
+
+mat-card-content ol,
+mat-card-content ul {
+  margin: 0;
+  padding-left: 24px;
+}
+
+mat-card-content li + li {
+  margin-top: 8px;
 }
 
 main[class$="-page"] .detail-actions {
